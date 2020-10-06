@@ -18,4 +18,15 @@ startDaemon(){
     fi
 }
 
-startDaemon
+#Switching option with daemon
+input="$1"
+
+case "$input" in
+    start)
+        startDaemon
+        ;;
+    *)
+        echo "Usage:  {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
