@@ -1,7 +1,6 @@
 #!/bin/bash
 
 #Initialize script file and PID for daemon
-
 script_file='./record_daemon.sh'
 pid_file=${script_file}.pid
 
@@ -10,10 +9,12 @@ startDaemon(){
     echo -n "Starting the process"
 
     if [ -f $pid_file ]; then
+        #Get pid from pid file
         pid_content= `cat $pid_file`
-        echo "%s already running" "$pid_content"
+        echo "Already running" "$pid_content"
         exit 2;
     else
+        #Run script in the background and assign the PID of the newly started program to pid_content
         $script_file & pid_content=$!
         echo $pid_content > $pid_file
         echo "Run sucessfully at" "$pid_content"
@@ -32,6 +33,26 @@ stopDaemon(){
     return 0
 }
 
+#Check daemon status
+statusDaemon(){
+    echo -n "Checking daemon status"
+
+    pid_content=`cat $pid_file`
+    echo "$pid_content"
+    ps -p $pid_content
+
+    return 0
+}
+
+#Restart deamon
+restartDaemon(){
+    echo -n "Restarting Daemon"
+
+    stopDaemon
+    startDaemon
+    return 0
+}
+
 #Switching option with daemon
 input="$1"
 
@@ -41,6 +62,12 @@ case "$input" in
         ;;
     stop)
         stopDaemon
+        ;;
+    status)
+        statusDaemon
+        ;;
+    restart)
+        restartDaemon
         ;;
     *)
         echo "Usage:  {start|stop|status|restart}"
