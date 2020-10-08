@@ -12,7 +12,7 @@ t2=300      #5 minutes
 #Get log size
 daemon_log='/tmp/daemon.log'
 log_size=$(ls -l $daemon_log | awk '{print $5}')
-max_size=10
+max_size=1000
 echo "$daemon_log"
 
 #Startup
