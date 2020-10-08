@@ -12,7 +12,7 @@ t2=300      #5 minutes
 #Get log size
 daemon_log='/tmp/daemon.log'
 log_size=$(ls -l $daemon_log | awk '{print $5}')
-max_size= 1000
+max_size=1000
 echo "$daemon_log"
 
 #Startup
@@ -40,11 +40,11 @@ done &
 #Second time interval: Rotate log if file exceeds 1000 bytes
 while true
 do
-    if [$log_size -ge $max_size]; then
+    if [ $log_size -ge $max_size ]; then
         echo -n "Log file exceeds" "$max_size"
         rm $daemon_log
     else
-        echo "$log_size" "fits the maximum size of file"
+        echo "$daemon_log" "fits the maximum size of file with" "$log_size"
     fi
     sleep $t2
 done
