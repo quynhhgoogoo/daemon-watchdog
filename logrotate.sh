@@ -1,5 +1,7 @@
 '/tmp/daemon.log' {
-  size 10
-  rotate 10
-  dateformat %Y-%m-%d.
+  su root syslog
+  size 1000
+  rotate 1
+  create
+  include /tmp/daemon-copy.log
 }

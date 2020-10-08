@@ -39,18 +39,19 @@ done &
 
 #Second time interval: Rotate log if file exceeds 1000 bytes
 log_config="/etc/logrotate.d/myapp"
+temp_log="/tmp/daemon-copy.log"
 
 while true
 do
     if [ $log_size -ge $max_size ]; then
         echo -n "Log file exceeds" "$max_size"
-        #sudo su -
-        touch $log_config
+        touch $temp_log $log_config
         cp logrotate.sh $log_config
         cat $log_config
-        logrotate -d $log_config
-        logrotate -vf $log_config
-        #rm $daemon_log
+	mv $daemon_log $temp_log
+	touch $daemon_log
+        #logrotate -d $log_config
+        logrotate -f $log_config
     else
         echo "$daemon_log" "fits the maximum size of file with" "$log_size"
     fi
