@@ -16,6 +16,21 @@
 <b>3. Run the watchdog features </b> 
 - The syntax used to run the watchdog bash is `./watchdog.sh `
 
+## Walkthrough
+- Run daemon bashscript
+<br>
+Note: The script is running in the background. I print it on screen so that it is easier to track
+<br>
+
+![image](https://user-images.githubusercontent.com/26543302/95573686-82903c80-0a34-11eb-89e6-6c42b65f762f.png)
+![image](https://user-images.githubusercontent.com/26543302/95574093-16fa9f00-0a35-11eb-9fcc-a85e207e655b.png)
+
+- Run watchdog script
+<br>
+
+![image](https://user-images.githubusercontent.com/26543302/95575244-04816500-0a37-11eb-9d7c-1f38d82f8b80.png)
+![image](https://user-images.githubusercontent.com/26543302/95575323-28dd4180-0a37-11eb-81b6-39da5cadc0f9.png)
+
 ## Problem Set
 
 Implement a watchdog and a mock daemon as shell scripts
@@ -34,7 +49,7 @@ On startup, create a log file with message: "Watchdog started" to `/tmp/watchdog
 - If the mock daemon is not running, watchdog should restart it
 - If daemon was restarted, write message: "Daemon restarted" to `/tmp/watchdog.log`
 
-- In 5 minute intervals
+2. In 5 minute intervals
 - Rotate the `/tmp/daemon.log` file if file size exceeds 1000 bytes
 - Retain one copy of rotated logs
 
