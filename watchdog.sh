@@ -43,14 +43,20 @@ temp_log="/tmp/daemon-copy.log"
 
 while true
 do
+    #If file exceeds the maximum value
     if [ $log_size -ge $max_size ]; then
         echo -n "Log file exceeds" "$max_size"
+        
+        #Logrotate configuration
         touch $temp_log $log_config
         cp logrotate.sh $log_config
         cat $log_config
-	mv $daemon_log $temp_log
-	touch $daemon_log
-        #logrotate -d $log_config
+
+	    mv $daemon_log $temp_log
+	    touch $daemon_log
+        
+        #Display log rotation process on terminal
+        logrotate -d $log_config
         logrotate -f $log_config
     else
         echo "$daemon_log" "fits the maximum size of file with" "$log_size"
