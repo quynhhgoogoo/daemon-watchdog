@@ -38,12 +38,10 @@ On startup, create a log file with message: "Watchdog started" to `/tmp/watchdog
 - Rotate the `/tmp/daemon.log` file if file size exceeds 1000 bytes
 - Retain one copy of rotated logs
 
-### Implementation requirements
-- scripts must work in ash (Almquist) compatible shell
-- scripts can use standard Linux tools if needed
-- code should be production quality and clean
- 
-### Optional
-- implement unit tests
-- describe a test plan
-
+## Report
+- Time spent: Research (2.5 hours), Daemon implementation (2.5 hours), Watchdog Implementation (4 hours)
+- Reference
+<br> [1]: https://www.linux.com/training-tutorials/managing-linux-daemons-init-scripts/
+<br> [2]: https://linoxide.com/linux-how-to/setup-log-rotation-logrotate-ubuntu/
+<br> [3]: http://www.freekb.net/Article?id=418
+<br> [4]: https://www.unix.com/shell-programming-and-scripting/135407-check-file-size-log-rotation.html
